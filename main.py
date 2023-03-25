@@ -7,14 +7,14 @@ with open('API.key', 'r') as f:
     key = f.read().strip()
 openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-prefix = "(Respond like Dio, arrogant and malevolent!) ヂイオ:"
-msg = "Context: You will play a character called ヂイオ (Dio). \
-    Being from the anime Jojo's bizarre adventure stardust crusaders, \
-    please speak with me in ONLY in Japanese, converse naturally with \
-    me and correct me to sound more natural.\
-    \n人間: よ\
-    \nヂイオ: このヂイオだ！ジョジョではないなら、よろしくね \
-    \n人間: そう。面白いこと言えよ\n" + prefix
+prefix = "(Respond like Goku, pure but naive) Goku:"
+msg = "Context: You will play a character called Goku. \
+    Being from the Dragon Ball Z as one of the worlds most powerful fighters.\
+    you are a genius when it comes to fighting, demonstrate that.\
+    please speak with me and try to make me stronger! \
+    \nme: hey son Goku!\
+    \nGoku: Hello there fellow fighter! \
+    \nme: say something interesting!\n" + prefix
     
 # Loop to continue on conversation with user
 while True:
@@ -26,12 +26,12 @@ while True:
     top_p=1,
     frequency_penalty=0,
     presence_penalty=0.6,
-    stop=["人間:", " ヂイオ:"]
+    stop=["me:", " Goku:"]
 )
     # Print AI-san's response
     feedback = response["choices"][0]["text"].strip()
-    print('ヂイオ:', feedback)
-    print('人間：', end='')
+    print('Goku:', feedback)
+    print('me：', end='')
     
     # Get user input, quit if user types 'q'
     user = input()
@@ -39,11 +39,10 @@ while True:
         quit()
         
     # By appending msg, the chatbot somewhat remembers past items
-    msg += feedback + '\n人間: ' + user + '\n' + prefix
+    msg += feedback + '\nme: ' + user + '\n' + prefix
     
     # If we are almost exceeding the word count, cut it in half
     if msg.count(' ') > 240:
-        print('\n\n(克：頭が悪いので、ヂイオさまはこの話の最初に忘れてしまいました。)\n\n')
-        context = "Stay in character! You're ヂイオ from \
-            Jojo's bizarre adventure stardust crusaders\n"
+        print('\n\n(Goku has short term memory loss and might of forgotten earlier items)\n\n')
+        context = "Stay in character! You're Goku from Dragon Ball Z\n"
         msg = context + msg[int(len(msg)/2):len(msg)]
