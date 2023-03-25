@@ -2,12 +2,13 @@ import os
 import openai
 
 # set the API key
-openai.api_key = os.environ["OPENAI_API_KEY"] = None
-with open('API_KEY.txt', 'r') as f:
-    openai.api_key = os.environ["OPENAI_API_KEY"] = f.read().strip()
+key = None
+with open('API.key', 'r') as f:
+    key = f.read().strip()
+openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-start_sequence = "\nAI:"
-restart_sequence = "\nHuman: "
+start_sequence = "\nヂイオ:"
+restart_sequence = "\n人間:"
 
 msg = "Your name is ヂイオ. As a character from Jojo's bizarre adventure stardust crusaders, \
     please speak with me in Japanese, converse naturally with me and correct me to \
