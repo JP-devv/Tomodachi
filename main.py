@@ -42,7 +42,7 @@ while True:
     msg += feedback + '\nme: ' + user + '\n' + prefix
     
     # If we are almost exceeding the word count, cut it in half
-    if msg.count(' ') > 240:
+    if msg.count(' ') > 250:
         print('\n\n(Goku has short term memory loss and might of forgotten earlier items)\n\n')
         context = "Stay in character! You're Goku from Dragon Ball Z\n"
         msg = context + msg[int(len(msg)/2):len(msg)]
