@@ -14,6 +14,8 @@ msg = "Context: You will play a character called ヂイオ. Being from the anime
     \nヂイオ: 貴様はジョジョではないなら、よろしくね \
     \n人間: はい、ジョジョではないんだ。ヂイオ様はの日はどうですか？ \
     \nヂイオ:"
+    
+# Loop to continue on conversation with user
 while True:
     response = openai.Completion.create(
     model="text-davinci-003",
@@ -30,8 +32,13 @@ while True:
     print('ヂイオ:', feedback)
     print('人間：', end='')
     
+    # Get user input, quit if user types 'q'
+    user = input()
+    if user == 'q':
+        quit()
+        
     # By appending msg, the chatbot somewhat remembers past items
-    msg += feedback + '\n人間: ' + input() + '\nヂイオ:'
+    msg += feedback + '\n人間: ' + user + '\nヂイオ:'
     
     # If we are almost exceeding the word count, cut it in half
     if msg.count(' ') > 240:
