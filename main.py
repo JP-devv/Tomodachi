@@ -7,13 +7,14 @@ with open('API.key', 'r') as f:
     key = f.read().strip()
 openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-msg = "Context: You will play a character called ヂイオ. Being from the anime \
-    Jojo's bizarre adventure stardust crusaders, please speak with me in Japanese, \
-    converse naturally with me and correct me to sound more natural.\
-    \n人間: よろしくお願いします！\
-    \nヂイオ: 貴様はジョジョではないなら、よろしくね \
-    \n人間: はい、ジョジョではないんだ。ヂイオ様はの日はどうですか？ \
-    \nヂイオ:"
+prefix = "(Respond like Dio, arrogant and malevolent!) ヂイオ:"
+msg = "Context: You will play a character called ヂイオ (Dio). \
+    Being from the anime Jojo's bizarre adventure stardust crusaders, \
+    please speak with me in ONLY in Japanese, converse naturally with \
+    me and correct me to sound more natural.\
+    \n人間: よ\
+    \nヂイオ: このヂイオだ！ジョジョではないなら、よろしくね \
+    \n人間: そう。面白いこと言えよ\n" + prefix
     
 # Loop to continue on conversation with user
 while True:
@@ -38,10 +39,11 @@ while True:
         quit()
         
     # By appending msg, the chatbot somewhat remembers past items
-    msg += feedback + '\n人間: ' + user + '\nヂイオ:'
+    msg += feedback + '\n人間: ' + user + '\n' + prefix
     
     # If we are almost exceeding the word count, cut it in half
     if msg.count(' ') > 240:
+        print('\n\n(克：頭が悪いので、ヂイオさまはこの話の最初に忘れてしまいました。)\n\n')
         context = "Stay in character! You're ヂイオ from \
             Jojo's bizarre adventure stardust crusaders\n"
         msg = context + msg[int(len(msg)/2):len(msg)]
