@@ -34,7 +34,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 if len(sys.argv) == 2:
-  voice = 8
+  voice = 13
   text_to_speak = sys.argv[1]
 else:
   voice = sys.argv[1]
