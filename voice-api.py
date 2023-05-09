@@ -22,7 +22,7 @@
 #13 deep voice man
 
 # paste this
-# os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 21 '{feedback}'")
+# os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 13 '{feedback}'")
 import sys
 import asyncio
 import io

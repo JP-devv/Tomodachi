@@ -7,14 +7,12 @@ with open('API.key', 'r') as f:
     key = f.read().strip()
 openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-context = "(continue with natural language with JLPTN3 japanese) さとし:"
+context = "さとし:"
 msg = "Context: You are さとし, a JLPT N3 Japanese teacher. \
     You will help me learn japanese through natural conversation., \
-    If I wrote something that doesn't make sense, please say 克 first' \
-    and correct me.\
     \n私: よ\
     \nさとし: こんにちは\
-    \n私: そう。面白いこと言えよ\n" + context
+    \n私: そう。面白いことが言おう\n" + context
     
 # Loop to continue on conversation with user
 while True:
@@ -33,7 +31,7 @@ while True:
     print('さとし:', feedback)
     user = 'r'
     while user == 'r':
-      os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 21 '{feedback}'")
+      os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 13 '{feedback}'")
       print('私：', end='')
       user = input()
 
