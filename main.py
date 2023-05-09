@@ -7,7 +7,7 @@ with open('API.key', 'r') as f:
     key = f.read().strip()
 openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-context = "さとし:"
+context = "(use JLPT N3 japanese)さとし:"
 msg = "Context: You are さとし, a JLPT N3 Japanese teacher. \
     You will help me learn japanese through natural conversation., \
     \n私: よ\
