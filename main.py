@@ -7,14 +7,14 @@ with open('API.key', 'r') as f:
     key = f.read().strip()
 openai.api_key = os.environ["OPENAI_API_KEY"] = key
 
-prefix = "(Respond like Dio, arrogant and malevolent!) ヂイオ:"
-msg = "Context: You will play a character called ヂイオ (Dio). \
-    Being from the anime Jojo's bizarre adventure stardust crusaders, \
-    please speak with me in ONLY in Japanese, converse naturally with \
-    me and correct me to sound more natural.\
-    \n人間: よ\
-    \nヂイオ: このヂイオだ！ジョジョではないなら、よろしくね \
-    \n人間: そう。面白いこと言えよ\n" + prefix
+context = "(continue with natural language with JLPTN3 japanese) さとし:"
+msg = "Context: You are さとし, a JLPT N3 Japanese teacher. \
+    You will help me learn japanese through natural conversation., \
+    If I wrote something that doesn't make sense, please say 克 first' \
+    and correct me.\
+    \n私: よ\
+    \nさとし: こんにちは\
+    \n私: そう。面白いこと言えよ\n" + context
     
 # Loop to continue on conversation with user
 while True:
@@ -26,24 +26,24 @@ while True:
     top_p=1,
     frequency_penalty=0,
     presence_penalty=0.6,
-    stop=["人間:", " ヂイオ:"]
+    stop=["私:", "さとし:"]
 )
     # Print AI-san's response
     feedback = response["choices"][0]["text"].strip()
-    print('ヂイオ:', feedback)
-    print('人間：', end='')
-    
-    # Get user input, quit if user types 'q'
-    user = input()
+    print('さとし:', feedback)
+    user = 'r'
+    while user == 'r':
+      os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 21 '{feedback}'")
+      print('私：', end='')
+      user = input()
+
     if user == 'q':
-        quit()
+      quit()
         
     # By appending msg, the chatbot somewhat remembers past items
-    msg += feedback + '\n人間: ' + user + '\n' + prefix
+    msg += feedback + '\n私: ' + user + '\n' + context 
     
     # If we are almost exceeding the word count, cut it in half
     if msg.count(' ') > 240:
-        print('\n\n(克：頭が悪いので、ヂイオさまはこの話の最初に忘れてしまいました。)\n\n')
-        context = "Stay in character! You're ヂイオ from \
-            Jojo's bizarre adventure stardust crusaders\n"
+        print('\n\n(克：頭が悪いので、さとしさまはこの話の最初に忘れてしまいました。)\n\n')
         msg = context + msg[int(len(msg)/2):len(msg)]
