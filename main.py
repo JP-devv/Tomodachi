@@ -12,7 +12,7 @@ msg = "Context: You are さとし, a JLPT N3 Japanese teacher. \
     You will help me learn japanese through natural conversation., \
     \n私: よ\
     \nさとし: こんにちは\
-    \n私: そう。面白いことが言おう\n" + context
+    \n私: そう。面白いことが言おう。なんでもいい\n" + context
     
 # Loop to continue on conversation with user
 while True:
@@ -31,7 +31,7 @@ while True:
     print('さとし:', feedback)
     user = 'r'
     while user == 'r':
-      os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 13 '{feedback}'")
+      os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py '{feedback}'")
       print('私：', end='')
       user = input()
 

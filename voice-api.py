@@ -22,7 +22,6 @@
 #13 deep voice man
 
 # paste this
-# os.system(f"python3.11 /Users/johannplaster/github/tomodachi/voice-api.py 13 '{feedback}'")
 import sys
 import asyncio
 import io
@@ -35,7 +34,7 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 if len(sys.argv) == 2:
-  voice = 17
+  voice = 8
   text_to_speak = sys.argv[1]
 else:
   voice = sys.argv[1]
